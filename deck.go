@@ -3,7 +3,11 @@ package main
 // Create a new type of `deck`
 // which is a slice of strings
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"io/ioutil"
+)
 
 type deck []string
 
@@ -19,9 +23,21 @@ func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
 
-func (d deck) saveToFile(){}
+func (d deck) saveToFile(fileName string) error {
+	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+}
 
-func NewDeckFromFile(){}
+func newDeckFromFile(fileName string) (deck, error) {
+	bs, err := ioutil.ReadFile(fileName)
+	if err != nil {
+
+	}
+	return deck{bs}, err
+}
+
+func (d deck) toString() string {
+	return strings.Join(d, ",")
+}
 
 func NewDeck() deck {
 	cards := deck{}
