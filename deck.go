@@ -8,6 +8,8 @@ import (
 	"strings"
 	"io/ioutil"
 	"os"
+	"math/rand"
+	"time"
 )
 
 type deck []string
@@ -18,7 +20,13 @@ func (d deck) print() {
 	}
 }
 
-func (d deck) shuffle(){}
+func (d deck) shuffle() {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+		d[newPosition], d[i] = d[i], d[newPosition]
+	}
+}
 
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
@@ -47,7 +55,7 @@ func NewDeck() deck {
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 	for _, suit := range cardSuits {
 		for _, value := range cardValues {
-			cards = append(cards, suit + " of " + value)
+			cards = append(cards, value + " of " + suit)
 		}
 	}
 	return cards
