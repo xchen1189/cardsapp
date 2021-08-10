@@ -10,9 +10,8 @@ func main() {
 	//hand.print()
 	//remainning.print()
 	//cards.saveToFile("my_cards")
-	cards, _ := newDeckFromFile("my_cards")
+	cards := newDeckFromFile("my_cards")
 	cards.print()
-
 }
 
 func newCard() string {

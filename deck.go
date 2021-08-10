@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"strings"
 	"io/ioutil"
+	"os"
 )
 
 type deck []string
@@ -27,12 +28,13 @@ func (d deck) saveToFile(fileName string) error {
 	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 }
 
-func newDeckFromFile(fileName string) (deck, error) {
+func newDeckFromFile(fileName string) deck {
 	bs, err := ioutil.ReadFile(fileName)
 	if err != nil {
-
+		fmt.Println("Error:", err)
+		os.Exit(1)
 	}
-	return deck{bs}, err
+	return deck(strings.Split(string(bs), ","))
 }
 
 func (d deck) toString() string {
