@@ -5,7 +5,10 @@ func main() {
 	//cards = append(cards, "Six of Spades")
 
 	cards := NewDeck()
-	cards.print()
+	//cards.print()
+	hand, remainning := deal(cards, 5)
+	hand.print()
+	remainning.print()
 }
 
 func newCard() string {
