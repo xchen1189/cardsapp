@@ -12,3 +12,25 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+func (d deck) shuffle(){}
+
+func (d deck) deal() deck {
+
+}
+
+func (d deck) saveToFile(){}
+
+func NewDeckFromFile(){}
+
+func NewDeck() deck {
+	cards := deck{}
+	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
+	for _, suit := range cardSuits {
+		for _, value := range cardValues {
+			cards = append(cards, suit + " of " + value)
+		}
+	}
+	return cards
+}
