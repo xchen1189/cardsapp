@@ -9,7 +9,7 @@ func main() {
 	// hand, remainning := deal(cards, 5)
 	// hand.print()
 	// remainning.print()
-	cards.saveToFile("my_cards")
+	// cards.saveToFile("my_cards")
 	cards := newDeckFromFile("my_cards")
 	cards.print()
 	cards.shuffle()
